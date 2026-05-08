@@ -33,6 +33,10 @@ const Login = () => {
 
   return (
     <div className="auth-page">
+      <div className='z-10 top-100'>
+              <h2>Track everything here..</h2>
+      </div>
+
       <div className="auth-card">
         <div className="auth-header">
           <div className="auth-icon">⬡</div>
