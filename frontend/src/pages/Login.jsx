@@ -35,6 +35,7 @@ const Login = () => {
     <div className="auth-page">
       <div className='z-10 top-100'>
               <h2>Track everything,and be efficent</h2>
+              <h3>changed okay</h3>
       </div>
 
       <div className="auth-card">
