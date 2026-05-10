@@ -18,26 +18,18 @@ phases:
       - echo "Setting permissions..."
       - chmod 400 deploy_key.pem
 
-      - echo "Adding EC2 host to known_hosts..."
+      - echo "Adding EC2 host..."
       - mkdir -p ~/.ssh
       - ssh-keyscan -H 3.108.120.211 >> ~/.ssh/known_hosts
 
   build:
     commands:
-      - echo "Starting deployment on EC2..."
+      - echo "Starting deployment..."
 
       - |
-        ssh -i deploy_key.pem deploy@3.108.120.211 '
-          set -x
+        ssh -o StrictHostKeyChecking=no -i deploy_key.pem deploy@3.108.120.211 "bash ~/deploy/deploy.sh"
 
-          echo "Connected to EC2"
-
-          cd ~/deploy
-
-          echo "Running deploy script..."
-
-          ./deploy.sh
-        '
+      - echo "Deployment completed successfully!"
 
 artifacts:
   files:
