@@ -11,14 +11,14 @@ phases:
       - apt-get install -y openssh-client
 
   pre_build:
-  commands:
-    - echo "Fetching SSH key from Secrets Manager..."
-    - aws secretsmanager get-secret-value --secret-id taskflow-deploy-key --query SecretString --output text > deploy_key.pem
+    commands:
+      - echo "Fetching SSH key from Secrets Manager..."
+      - aws secretsmanager get-secret-value --secret-id taskflow-deploy-key --query SecretString --output text > deploy_key.pem
 
-    - chmod 400 deploy_key.pem
+      - chmod 400 deploy_key.pem
 
-    - mkdir -p ~/.ssh
-    - ssh-keyscan -H YOUR_ELASTIC_IP >> ~/.ssh/known_hosts
+      - mkdir -p ~/.ssh
+      - ssh-keyscan -H 3.108.120.211 >> ~/.ssh/known_hosts
 
   build:
     commands:
