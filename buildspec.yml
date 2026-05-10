@@ -13,7 +13,7 @@ phases:
   pre_build:
     commands:
       - echo "Fetching SSH key from Secrets Manager..."
-      - aws secretsmanager get-secret-value --secret-id taskflow-deploy-key --query SecretString --output text > deploy_key.pem
+      - aws secretsmanager get-secret-value --secret-id taskflow-deploy-key-new --query SecretString --output text > deploy_key.pem
 
       - chmod 400 deploy_key.pem
 
