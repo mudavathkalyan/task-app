@@ -15,8 +15,10 @@ phases:
       - echo "Fetching SSH key from Secrets Manager..."
       - aws secretsmanager get-secret-value --secret-id taskflow-deploy-key-new --query SecretString --output text > deploy_key.pem
 
+      - echo "Setting permissions..."
       - chmod 400 deploy_key.pem
 
+      - echo "Adding EC2 host to known_hosts..."
       - mkdir -p ~/.ssh
       - ssh-keyscan -H 3.108.120.211 >> ~/.ssh/known_hosts
 
@@ -26,7 +28,14 @@ phases:
 
       - |
         ssh -i deploy_key.pem deploy@3.108.120.211 '
-          cd ~/deploy &&
+          set -x
+
+          echo "Connected to EC2"
+
+          cd ~/deploy
+
+          echo "Running deploy script..."
+
           ./deploy.sh
         '
 
