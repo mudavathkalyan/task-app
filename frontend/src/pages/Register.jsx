@@ -40,6 +40,9 @@ const Register = () => {
 
   return (
     <div className="auth-page">
+      <div>
+        <h2>Register here okkkkk....</h2>
+      </div>
       <div className="auth-card">
         <div className="auth-header">
           <div className="auth-icon">⬡</div>
